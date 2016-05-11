@@ -11,11 +11,16 @@ class MagentaTest(unittest.TestCase):
 
     def test_colour_bounds(self):
         colour = generate_colour()
-        self.assertLess(colour[0], 256)
-        self.assertLess(colour[1], 256)
-        self.assertLess(colour[2], 256)
-        self.assertGreaterEqual(colour[0], 0)
-        self.assertGreaterEqual(colour[1], 0)
-        self.assertGreaterEqual(colour[2], 0)
+        self.assertLess( colour[0], 256 )
+        self.assertLess( colour[1], 256 )
+        self.assertLess( colour[2], 256 )
+        self.assertGreaterEqual( colour[0], 0 )
+        self.assertGreaterEqual( colour[1], 0 )
+        self.assertGreaterEqual( colour[2], 0 )
 
-    # def test_
+    def test_image_size(self):
+        self.assertEqual(new_image(10, 15, 2).size, (20, 30))
+        self.assertEqual(new_image(10, 15, 3).size, (30, 45))
+
+    def test_image_mode(self):
+        self.assertEqual(new_image(16, 16, 10).mode, "RGB")
