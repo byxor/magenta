@@ -24,5 +24,16 @@ class MagentaTest(unittest.TestCase):
         self.assertEqual(new_image(16, 16, 10).mode, "RGB")
         self.assertEqual(new_image(1, 1, 1).mode, "RGB")
 
-
+    def test_draw_pattern(self):
+        image = new_image(16, 16, 2)
+        palette = [(0, 255, 0)]
+        draw_pattern(image, palette)
+        has_bug = False
+        for x in range(0, 16*2):
+            for y in range(0, 16*2):
+                if has_bug == False:
+                    if image.getpixel((x, y)) != (palette[0]):
+                        has_bug = True
+        self.assertEqual(has_bug, False)
+        
 unittest.main()
