@@ -1,6 +1,7 @@
 import unittest
 from magenta import *
 
+
 class MagentaTest(unittest.TestCase):
 
     def test_generate_palette(self):
