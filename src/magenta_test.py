@@ -28,12 +28,12 @@ class MagentaTest(unittest.TestCase):
         image = new_image(16, 16, 2)
         palette = [(0, 255, 0)]
         draw_pattern(image, palette)
-        has_bug = False
+        all_green = True
         for x in range(0, 16*2):
             for y in range(0, 16*2):
-                if has_bug == False:
+                if all_green == True:
                     if image.getpixel((x, y)) != (palette[0]):
-                        has_bug = True
-        self.assertEqual(has_bug, False)
-        
+                        all_green = False
+        self.assertEqual(all_green, True)
+
 unittest.main()
