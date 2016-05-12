@@ -14,18 +14,18 @@ class MagentaImage(object):
 	@staticmethod
 	def __check_args(raw_width, raw_height, scale):
 		"""Validates the args passed to the constructor."""
-		if type(raw_width) != "int":
-			raise ValueError
-		if type(raw_height != "int"):
-			raise ValueError
-		if type(scale != "int")
-			raise ValueError
+		if str(type(raw_width)) != "<class 'int'>":
+			raise ValueError("'raw_width' must be of type 'int'.")
+		if str(type(raw_height)) != "<class 'int'>":
+			raise ValueError("'raw_height' must be of type 'int'.")
+		if str(type(scale)) != "<class 'int'>":
+			raise ValueError("'scale' must be of type 'int'.")
 		if raw_width <= 0:
-			raise ValueError
+			raise ValueError("'raw_width' must be greater than 0.")
 		if raw_height <= 0:
-			raise ValueError
+			raise ValueError("'raw_height' must be greater than 0.")
 		if scale <= 0:
-			raise ValueError
+			raise ValueError("'scale' must be greater than 0.")
 
 	def __init_image(self):
 		"""Creates the PIL image for the MagentaImage object. Do not call."""

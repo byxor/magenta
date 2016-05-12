@@ -53,8 +53,8 @@ class MagentaTest(unittest.TestCase):
 		self.assertEqual(mImage.get_rawsize(), (20, 20))
 
 	def test_MagentaImage_scaledsize(self):
-		mImage = MagentaImage(20, 10, 5):
+		mImage = MagentaImage(20, 10, 5)
 		self.assertEqual(mImage.get_scaledsize(), (100, 50))
 
-		
+
 unittest.main()
