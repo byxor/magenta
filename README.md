@@ -15,10 +15,11 @@ pip install Pillow
 Want to generate a cool image? Here's how...  
 ```python
 from magenta import *
+from geometry import *
 
 # Create your image object
-rawsize = (64, 64)	# Raw dimensions of the image (before upscaling)
-scale = 2			# How much you want to upscale it
+rawsize = Dimension(64, 64)	# Raw dimensions of the image (before upscaling)
+scale = 2					# How much you want to upscale it
 image = MagentaImage(rawsize, scale)
 
 # Generate 2 random colours and draw 3 random shapes

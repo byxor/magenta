@@ -14,23 +14,25 @@ class MagentaImage(object):
 	@staticmethod
 	def __check_args(rawsize, scale):
 		"""Validates the args passed to the constructor."""
-		if str(type(rawsize[0])) != "<class 'int'>":
+		if str(type(rawsize)) != "<class 'geometry.Dimension'>":
+			raise ValueError("'rawsize' must be of type 'Dimension'.")
+		if str(type(rawsize.width)) != "<class 'int'>":
 			raise ValueError("'raw_width' must be of type 'int'.")
-		if str(type(rawsize[1])) != "<class 'int'>":
+		if str(type(rawsize.height)) != "<class 'int'>":
 			raise ValueError("'raw_height' must be of type 'int'.")
 		if str(type(scale)) != "<class 'int'>":
 			raise ValueError("'scale' must be of type 'int'.")
-		if rawsize[0] <= 0:
+		if rawsize.width <= 0:
 			raise ValueError("'raw_width' must be greater than 0.")
-		if rawsize[1] <= 0:
+		if rawsize.height <= 0:
 			raise ValueError("'raw_height' must be greater than 0.")
 		if scale <= 0:
 			raise ValueError("'scale' must be greater than 0.")
 
 	def __init_image(self):
 		"""Creates the PIL image for the MagentaImage object. Do not call."""
-		w = self.__rawsize[0] * self.__scale
-		h = self.__rawsize[1] * self.__scale
+		w = self.__rawsize.width * self.__scale
+		h = self.__rawsize.height * self.__scale
 		MODE = "RGB"
 		SCALED_DIMS = (w, h)
 		FILL = (0, 0, 0)
@@ -38,13 +40,13 @@ class MagentaImage(object):
 
 	def __str__(self):
 		"""Returns string representation of MagentaImage instance."""
-		s = "---MagentaImage---\n"
 		rawsize = self.get_rawsize()
-		s += "Raw dimensions: ({:d}x{:d})\n".format(rawsize[0], rawsize[1])
 		scaledsize = self.get_scaledsize()
-		scw = scaledsize[0]
-		sch = scaledsize[1]
-		s += "Scaled dimensions: ({:d}x{:d}) scale={:d}".format(scw, sch, self.__scale)
+		s = "---MagentaImage---\n"
+		s += "Raw dimensions: ({:d}x{:d})\n"
+		s.format(rawsize.width, rawsize.height)
+		s += "Scaled dimensions: ({:d}x{:d}) scale={:d}"
+		s.format(scaledsize.width, scaledsize.height, self.__scale)
 		return s
 
 	def __draw_random_shape(self, palette):
@@ -61,14 +63,15 @@ class MagentaImage(object):
 		# Select random location/size
 		# Draw pattern
 
-	def put_scaledpixel(self, xy, colour):
+	def put_scaledpixel(self, pos, colour):
 		"""Takes raw co-ordinates and a colour as arguments and automatically
 		draws the pixel in that location (after scaling has been applied)."""
-		x = xy[0]
-		y = xy[1]
-		for xx in range(x*self.__scale, x+self.__scale):
-			for yy in range(y*self.__scale, y+self.__scale):
-				self.__image.putpixel(xy, colour)
+
+		pos_scaled = Position(pos.x*self.__scale, pos.y*self.__scale)
+
+		for x in range(pos_scaled.x, pos_scaled.x + self.__scale):
+			for y in range(pos_scaled.y, pos_Scaled.y + self.__scale):
+				self.__image.putpixel((x, y), colour)
 
 	def get_rawsize(self):
 		"""Gets the dimensions of the image before scaling is applied."""
