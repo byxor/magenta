@@ -48,6 +48,15 @@ class MagentaImage(object):
 		s += "Scaled dimensions: ({:d}x{:d}) scale={:d}".format(scw, sch, self.__scale)
 		return s
 
+	def __draw_random_shape(self, palette):
+		# TO DO ...
+		# Select random colour from palette
+		rnd = random.randrange(0, len(palette))
+		colour = palette[rnd]
+		# Select random shape
+		# Select random location/size
+		# Draw pattern
+
 	def put_scaledpixel(self, xy, colour):
 		"""Takes raw co-ordinates and a colour as arguments and automatically
 		draws the pixel in that location (after scaling has been applied)."""
@@ -83,12 +92,7 @@ class MagentaImage(object):
 		"""Draw random patterns on the image using the provided colour palette.
 		The complexity defines the number of shapes to draw."""
 		for i in range(0, complexity):
-			# TO DO ...
-			# Select random colour from palette
-			# Select random shape
-			# Select random location/size
-			# Draw pattern
-			pass
+			self.__draw_random_shape(palette)
 
 
 def generate_colour():
