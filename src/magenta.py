@@ -49,7 +49,12 @@ class MagentaImage(object):
 		return s
 
 	def __draw_random_shape(self, palette):
+		"""Draws a random shape on the MagentaImage using the palette."""
+
 		# TO DO ...
+		# PASS A SHAPE SAMPLE INTO THIS METHOD
+		# DEPENDENCY INJECTION
+
 		# Select random colour from palette
 		rnd = random.randrange(0, len(palette))
 		colour = palette[rnd]
