@@ -8,7 +8,7 @@ class MagentaImage(object):
 		self.__raw_width = raw_width
 		self.__raw_height = raw_height
 		self.__scale = scale
-		self.__init_image
+		self.__init_image()
 
 	def __init_image(self):
 		"""Creates the PIL image for the MagentaImage object. Do not call."""
