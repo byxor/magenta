@@ -18,22 +18,13 @@ class MagentaTest(unittest.TestCase):
         self.assertGreaterEqual(colour[1], 0)
         self.assertGreaterEqual(colour[2], 0)
 
-    def test_new_image(self):
-        self.assertEqual(new_image(10, 15, 2).size, (20, 30))
-        self.assertEqual(new_image(10, 15, 3).size, (30, 45))
-        self.assertEqual(new_image(16, 16, 10).mode, "RGB")
-        self.assertEqual(new_image(1, 1, 1).mode, "RGB")
-
-    def test_draw_pattern(self):
-        image = new_image(16, 16, 2)
-        palette = [(0, 255, 0)]
-        draw_pattern(image, palette)
-        all_green = True
-        for x in range(0, 16*2):
-            for y in range(0, 16*2):
-                if all_green == True:
-                    if image.getpixel((x, y)) != (palette[0]):
-                        all_green = False
-        self.assertEqual(all_green, True)
+    def test_MagentaImage_string(self):
+		mImage = MagentaImage(1, 1, 2)
+		expected = "---MagentaImage---\nRaw dimensions: (1x1)\nScaled dimensions: (2x2) scale=2"
+		self.assertEqual(str(mImage), expected)
+		mImage = MagentaImage(10, 5, 1)
+		expected = "---MagentaImage---\nRaw dimensions: (10x5)\nScaled dimensions: (10x5) scale=1"
+		self.assertEqual(str(mImage), expected)
+		
 
 unittest.main()

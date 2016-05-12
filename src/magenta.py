@@ -3,7 +3,7 @@ import random
 
 class MagentaImage(object):
 
-	def __init__(self, raw_width, raw_height, scale):
+	def __init__(self, raw_width, raw_height, scale=1):
 		"""Constructor for MagentaImage."""
 		self.__raw_width = raw_width
 		self.__raw_height = raw_height
