@@ -17,10 +17,9 @@ Want to generate a cool image? Here's how...
 from magenta import *
 
 # Create your image object
-raw_width = 100		# Width of the image
-raw_height = 100	# Height of the image
+rawsize = (64, 64)	# Raw dimensions of the image (before upscaling)
 scale = 2			# How much you want to upscale it
-image = MagentaImage(raw_width, raw_height, scale)
+image = MagentaImage(rawsize, scale)
 
 # Generate 3 random colours and draw a random pattern
 palette = generate_pallete(3)
