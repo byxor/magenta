@@ -26,4 +26,8 @@ image.draw_random(palette)
 
 # Display your work of art!
 image.show()
+
+# Save your work of art!
+image.save("magenta.png", "png")
+
 ```
