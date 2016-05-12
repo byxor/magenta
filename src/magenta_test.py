@@ -56,5 +56,16 @@ class MagentaTest(unittest.TestCase):
 		mImage = MagentaImage(20, 10, 5)
 		self.assertEqual(mImage.get_scaledsize(), (100, 50))
 
+	def test_MagentaImage_save(self):
+		mImage = MagentaImage(1, 1, 1)
+		fileexists = True
+		try:
+			mImage.save("temp.png", "png")
+			f = open("temp.png", "rb")
+			f.close()
+		except FileNotFoundError:
+			fileexists = False
+		self.assertEqual(fileexists, True)
+		# TODO: Delete temp.png
 
 unittest.main()
