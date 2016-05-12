@@ -5,10 +5,27 @@ class MagentaImage(object):
 
 	def __init__(self, raw_width, raw_height, scale=1):
 		"""Constructor for MagentaImage."""
+		MagentaImage.__check_args(raw_width, raw_height, scale)
 		self.__raw_width = raw_width
 		self.__raw_height = raw_height
 		self.__scale = scale
 		self.__init_image()
+
+	@staticmethod
+	def __check_args(raw_width, raw_height, scale):
+		"""Validates the args passed to the constructor."""
+		if type(raw_width) != "int":
+			raise ValueError
+		if type(raw_height != "int"):
+			raise ValueError
+		if type(scale != "int")
+			raise ValueError
+		if raw_width <= 0:
+			raise ValueError
+		if raw_height <= 0:
+			raise ValueError
+		if scale <= 0:
+			raise ValueError
 
 	def __init_image(self):
 		"""Creates the PIL image for the MagentaImage object. Do not call."""
