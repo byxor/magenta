@@ -1,6 +1,7 @@
 from PIL import Image
 import random
 
+
 class MagentaImage(object):
 
 	def __init__(self, raw_width, raw_height, scale=1):
@@ -55,15 +56,19 @@ class MagentaImage(object):
 		"""Gets the dimensions of the upscaled image."""
 		return self.__image.size
 
+	def get_scale(self):
+		"""Gets the scale of the image."""
+		return self.__scale
+
 	def show(self):
 		"""Displays the image (mainly for debugging). Check the PIL Image.show()
 		documentation to find out more."""
 		self.__image.show()
 
-	def save(self, filepath, format=None, **params):
+	def save(self, filepath, format=None):
 		"""Saves the MagentaImage to a file. Check the PIL Image.save()
 		documentation to find out more."""
-		self.__image.save(filepath, format, params)
+		self.__image.save(filepath, format)
 
 	def draw_random(self, palette, complexity=3):
 		"""Draw random patterns on the image using the provided colour palette.
