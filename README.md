@@ -1,6 +1,9 @@
 # magenta
 Procedurally generate neat little pixelated images in python3!
 
+Magenta's design philosophy is simplicity. Let's keep things quick and easy to use.  
+A happy API makes a happy programmer.
+
 ## Dependencies
 
 Magenta depends on a few libraries which can easily be installed with pip...
