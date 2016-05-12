@@ -45,10 +45,6 @@ class MagentaImage(object):
 		s += "Scaled dimensions: ({:d}x{:d}) scale={:d}".format(scaledsize[0], scaledsize[1], self.__scale)
 		return s
 
-	def _get_inner_image(self):
-		"""Returns the PIL Image from inside the MagentaImage object."""
-		return self.__image
-
 	def get_rawsize(self):
 		"""Gets the dimensions of the image before scaling is applied."""
 		return (self.__raw_width, self.__raw_height)
@@ -56,6 +52,11 @@ class MagentaImage(object):
 	def get_scaledsize(self):
 		"""Gets the dimensions of the upscaled image."""
 		return self.__image.size
+
+	def show(self):
+		"""Displays the image (mainly for debugging). Check the PIL Image.show()
+		documentation to find out more."""
+		self.__image.show()
 
 
 def generate_colour():
