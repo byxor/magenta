@@ -4,38 +4,37 @@ import random
 
 class MagentaImage(object):
 
-	def __init__(self, raw_width, raw_height, scale=1):
+	def __init__(self, rawsize, scale=1):
 		"""Constructor for MagentaImage."""
-		MagentaImage.__check_args(raw_width, raw_height, scale)
-		self.__raw_width = raw_width
-		self.__raw_height = raw_height
+		MagentaImage.__check_args(rawsize, scale)
+		self.__rawsize = rawsize
 		self.__scale = scale
 		self.__init_image()
 
 	@staticmethod
-	def __check_args(raw_width, raw_height, scale):
+	def __check_args(rawsize, scale):
 		"""Validates the args passed to the constructor."""
-		if str(type(raw_width)) != "<class 'int'>":
+		if str(type(rawsize[0])) != "<class 'int'>":
 			raise ValueError("'raw_width' must be of type 'int'.")
-		if str(type(raw_height)) != "<class 'int'>":
+		if str(type(rawsize[1])) != "<class 'int'>":
 			raise ValueError("'raw_height' must be of type 'int'.")
 		if str(type(scale)) != "<class 'int'>":
 			raise ValueError("'scale' must be of type 'int'.")
-		if raw_width <= 0:
+		if rawsize[0] <= 0:
 			raise ValueError("'raw_width' must be greater than 0.")
-		if raw_height <= 0:
+		if rawsize[1] <= 0:
 			raise ValueError("'raw_height' must be greater than 0.")
 		if scale <= 0:
 			raise ValueError("'scale' must be greater than 0.")
 
 	def __init_image(self):
 		"""Creates the PIL image for the MagentaImage object. Do not call."""
-		w = self.__raw_width * self.__scale
-		h = self.__raw_height * self.__scale
+		w = self.__rawsize[0] * self.__scale
+		h = self.__rawsize[1] * self.__scale
 		MODE = "RGB"
-		DIMS = (w, h)
+		SCALED_DIMS = (w, h)
 		FILL = (0, 0, 0)
-		self.__image = Image.new(MODE, DIMS, FILL)
+		self.__image = Image.new(MODE, SCALED_DIMS, FILL)
 
 	def __str__(self):
 		"""Returns string representation of MagentaImage instance."""
@@ -73,7 +72,7 @@ class MagentaImage(object):
 
 	def get_rawsize(self):
 		"""Gets the dimensions of the image before scaling is applied."""
-		return (self.__raw_width, self.__raw_height)
+		return self.__rawsize
 
 	def get_scaledsize(self):
 		"""Gets the dimensions of the upscaled image."""
