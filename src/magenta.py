@@ -1,6 +1,26 @@
 from PIL import Image
 import random
 
+class MagentaImage(object):
+
+	def __init__(self, raw_width, raw_height, scale):
+		"""Constructor for MagentaImage."""
+		self._raw_width = raw_width
+		self._raw_height = raw_height
+		self._scale = scale
+		self.__init_image
+
+	def __init_image(self):
+		"""Creates the PIL image for the MagentaImage object. Do not call."""
+		MODE = "RGB"
+		w = self._raw_width * self._scale
+		h = self._raw_height * self._scale
+		DIMS = (w, h)
+		FILL = (0, 0, 0)
+		self.__image = Image.new(MODE, DIMS, FILL)
+
+
+
 def generate_colour():
     """Generates a random (r, g, b) tuple."""
     r = random.randrange(256)
@@ -18,9 +38,6 @@ def generate_palette(size):
     return palette
 
 
-def new_image(width, height, scale):
-    """Returns a blank new RGB image."""
-    mode = "RGB"
-    dimensions = (width*scale, height*scale)
-    fill_colour = (0, 0, 0)
-    return Image.new(mode, dimensions, fill_colour)
+def draw_pattern(image, palette):
+    """Draws a random pattern onto the specified image using the specified
+    palette."""
