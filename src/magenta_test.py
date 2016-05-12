@@ -66,6 +66,7 @@ class MagentaTest(unittest.TestCase):
 		except FileNotFoundError:
 			fileexists = False
 		self.assertEqual(fileexists, True)
-		# TODO: Delete temp.png
+		import os
+		os.remove("temp.png")
 
 unittest.main()
