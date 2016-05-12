@@ -19,7 +19,11 @@ class MagentaImage(object):
 		FILL = (0, 0, 0)
 		self.__image = Image.new(MODE, DIMS, FILL)
 
-
+	def __str__(self):
+		s = "---MagentaImage---\n"
+		s += "Raw dimensions: ({}x{})\n".format(self._raw_width, self._raw_height)
+		s += "Scaled dimensions: ({}x{}) scale={}".format(self.get_scaledwidth(), self.get_scaledheight(), self._scale)
+		return s
 
 def generate_colour():
     """Generates a random (r, g, b) tuple."""
