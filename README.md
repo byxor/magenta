@@ -21,11 +21,11 @@ from magenta import *
 from shape import *
 
 # Create your image object
-rawsize = (64, 64) # Raw dimensions of the image.
-image = MagentaImage(rawsize, scale=5) # Scale of 2 upscales the image to 64x64.
+rawsize = (32, 32) # Raw dimensions of the image.
+image = MagentaImage(rawsize, scale=2) # Scale of 2 upscales the image to 64x64.
 
-# Generate 2 random colours and draw 3 random shapes
-palette = generate_palette(size=10)
+# Generate 5 random colours and draw 30 random shapes
+palette = generate_palette(size=5)
 image.draw_random(palette, shapes, complexity=30)
 
 # Display your work of art!
