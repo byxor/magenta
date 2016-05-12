@@ -21,9 +21,8 @@ from magenta import *
 from geometry import *
 
 # Create your image object
-rawsize = Dimension(64, 64)	# Raw dimensions of the image (before upscaling)
-scale = 2					# How much you want to upscale it
-image = MagentaImage(rawsize, scale)
+rawsize = Dimension(32, 32) # Raw dimensions of the image.
+image = MagentaImage(rawsize, scale=2) # Scale of 2 upscales the image to 64x64.
 
 # Generate 2 random colours and draw 3 random shapes
 palette = generate_pallete(2)
