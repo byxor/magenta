@@ -47,28 +47,40 @@ class MagentaImage(object):
 		s += "Scaled dimensions: ({:d}x{:d}) scale={:d}".format(scw, sch, self.__scale)
 		return s
 
-	def __draw_random_shape(self, palette):
+	def __draw_random_shape(self, palette, shapes):
 		"""Draws a random shape on the MagentaImage using the palette."""
 
-		# TO DO ...
-		# PASS A SHAPE SAMPLE INTO THIS METHOD
-		# DEPENDENCY INJECTION
-
-		# Select random colour from palette
 		rnd = random.randrange(0, len(palette))
 		colour = palette[rnd]
-		# Select random shape
-		# Select random location/size
-		# Draw pattern
 
-	def put_scaledpixel(self, xy, colour):
+		rnd = random.randrange(0, len(shapes))
+		shape = shapes[rnd]()
+
+		rndX = random.randrange(-self.get_rawsize()[0], self.get_rawsize()[0])
+		rndY = random.randrange(-self.get_rawsize()[1], self.get_rawsize()[1])
+		pos = (rndX, rndY)
+
+		rndX = random.randrange(0, self.get_rawsize()[0])
+		rndY = random.randrange(0, self.get_rawsize()[1])
+		size = (rndX, rndY)
+
+		shape.draw(self, pos, size, colour)
+
+
+	def put_scaledpixel(self, pos, colour):
 		"""Takes raw co-ordinates and a colour as arguments and automatically
 		draws the pixel in that location (after scaling has been applied)."""
-		x = xy[0]
-		y = xy[1]
-		for xx in range(x*self.__scale, x+self.__scale):
-			for yy in range(y*self.__scale, y+self.__scale):
-				self.__image.putpixel(xy, colour)
+		rawx = pos[0]
+		rawy = pos[1]
+
+		if not 0 <= rawx < self.get_rawsize()[0]:
+			return
+		if not 0 <= rawy < self.get_rawsize()[1]:
+			return
+
+		for x in range(rawx*self.__scale, (rawx+1)*self.__scale):
+			for y in range(rawy*self.__scale, (rawy+1)*self.__scale):
+				self.__image.putpixel((x, y), colour)
 
 	def get_rawsize(self):
 		"""Gets the dimensions of the image before scaling is applied."""
@@ -92,12 +104,20 @@ class MagentaImage(object):
 		documentation to find out more."""
 		self.__image.save(filepath, format)
 
-	def draw_random(self, palette, complexity=3):
+	def fill(self, colour):
+		"""Fills the entire image with a solid colour."""
+		for x in range(0, self.get_rawsize()[0]):
+			for y in range(0, self.get_rawsize()[1]):
+				self.put_scaledpixel((x, y), colour)
+
+	def draw_random(self, palette, shapes, complexity=3):
 		"""Draw random patterns on the image using the provided colour palette.
 		The complexity defines the number of shapes to draw."""
-		for i in range(0, complexity):
-			self.__draw_random_shape(palette)
 
+		self.fill(palette[0])
+
+		for i in range(0, complexity):
+			self.__draw_random_shape(palette, shapes)
 
 def generate_colour():
     """Generates a random (r, g, b) tuple."""
@@ -114,8 +134,3 @@ def generate_palette(size):
         colour = generate_colour()
         palette.append(colour)
     return palette
-
-
-def draw_pattern(image, palette):
-    """Draws a random pattern onto the specified image using the specified
-    palette."""

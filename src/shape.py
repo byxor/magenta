@@ -21,3 +21,6 @@ class Rect(Shape):
 		for x in range(xpos, xpos+width):
 			for y in range(ypos, ypos+width):
 				mImage.put_scaledpixel((x, y), colour)
+
+
+shapes = [Rect]
