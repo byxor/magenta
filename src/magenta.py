@@ -5,25 +5,37 @@ class MagentaImage(object):
 
 	def __init__(self, raw_width, raw_height, scale):
 		"""Constructor for MagentaImage."""
-		self._raw_width = raw_width
-		self._raw_height = raw_height
-		self._scale = scale
+		self.__raw_width = raw_width
+		self.__raw_height = raw_height
+		self.__scale = scale
 		self.__init_image
 
 	def __init_image(self):
 		"""Creates the PIL image for the MagentaImage object. Do not call."""
+		w = self.__raw_width * self.__scale
+		h = self.__raw_height * self.__scale
 		MODE = "RGB"
-		w = self._raw_width * self._scale
-		h = self._raw_height * self._scale
 		DIMS = (w, h)
 		FILL = (0, 0, 0)
 		self.__image = Image.new(MODE, DIMS, FILL)
 
 	def __str__(self):
+		"""Returns string representation of MagentaImage instance."""
 		s = "---MagentaImage---\n"
-		s += "Raw dimensions: ({}x{})\n".format(self._raw_width, self._raw_height)
-		s += "Scaled dimensions: ({}x{}) scale={}".format(self.get_scaledwidth(), self.get_scaledheight(), self._scale)
+		rawsize = self.get_rawsize()
+		s += "Raw dimensions: ({}x{})\n".format(rawsize[0], rawsize[1])
+		scaledsize = self.get_scaledsize()
+		s += "Scaled dimensions: ({}x{}) scale={}".format(scaledsize[0], scaledsize[1])
 		return s
+
+	def get_rawsize(self):
+		"""Gets the dimensions of the image before scaling is applied."""
+		return (self.__raw_width, self.__raw_height)
+
+	def get_scaledsize(self):
+		"""Gets the dimensions of the upscaled image."""
+		return self.__image.size
+
 
 def generate_colour():
     """Generates a random (r, g, b) tuple."""
