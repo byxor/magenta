@@ -19,7 +19,7 @@ from magenta import *
 # Create your image object
 raw_width = 100		# Width of the image
 raw_height = 100	# Height of the image
-scale = 2				# How much you want to upscale it
+scale = 2			# How much you want to upscale it
 image = MagentaImage(raw_width, raw_height, scale)
 
 # Generate 3 random colours and draw a random pattern
