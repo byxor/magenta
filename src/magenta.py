@@ -60,6 +60,11 @@ class MagentaImage(object):
 		documentation to find out more."""
 		self.__image.show()
 
+	def save(self, filepath, format=None, **params):
+		"""Saves the MagentaImage to a file. Check the PIL Image.save()
+		documentation to find out more."""
+		self.__image.save(filepath, format, params)
+
 
 def generate_colour():
     """Generates a random (r, g, b) tuple."""
