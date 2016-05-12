@@ -1,10 +1,10 @@
-#TODO: Replace abstract class Shape with Drawable interface.
+import abc
 
-class Shape(object):
+class Shape(metaclass=abc.ABCMeta):
 
-	@abstractmethod
+	@abc.abstractmethod
 	def draw(self, mImage, position, size):
-		pass
+		return
 
 
 class Rect(Shape):
