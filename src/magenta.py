@@ -23,9 +23,9 @@ class MagentaImage(object):
 		"""Returns string representation of MagentaImage instance."""
 		s = "---MagentaImage---\n"
 		rawsize = self.get_rawsize()
-		s += "Raw dimensions: ({}x{})\n".format(rawsize[0], rawsize[1])
+		s += "Raw dimensions: ({:d}x{:d})\n".format(rawsize[0], rawsize[1])
 		scaledsize = self.get_scaledsize()
-		s += "Scaled dimensions: ({}x{}) scale={}".format(scaledsize[0], scaledsize[1])
+		s += "Scaled dimensions: ({:d}x{:d}) scale={:d}".format(scaledsize[0], scaledsize[1], self.__scale)
 		return s
 
 	def get_rawsize(self):
