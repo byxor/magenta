@@ -48,7 +48,7 @@ class MagentaImage(object):
 		s += "Scaled dimensions: ({:d}x{:d}) scale={:d}".format(scw, sch, self.__scale)
 		return s
 
-	def _put_scaledpixel(self, xy, colour):
+	def put_scaledpixel(self, xy, colour):
 		"""Takes raw co-ordinates and a colour as arguments and automatically
 		draws the pixel in that location (after scaling has been applied)."""
 		x = xy[0]
