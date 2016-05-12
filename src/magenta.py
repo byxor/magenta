@@ -65,6 +65,9 @@ class MagentaImage(object):
 		documentation to find out more."""
 		self.__image.save(filepath, format, params)
 
+	def draw_random(self, palette):
+		"""Draw random patterns on the image using the provided colour palette."""
+		
 
 def generate_colour():
     """Generates a random (r, g, b) tuple."""
