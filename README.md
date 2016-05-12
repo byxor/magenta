@@ -21,9 +21,9 @@ rawsize = (64, 64)	# Raw dimensions of the image (before upscaling)
 scale = 2			# How much you want to upscale it
 image = MagentaImage(rawsize, scale)
 
-# Generate 3 random colours and draw a random pattern
-palette = generate_pallete(3)
-image.draw_random(palette)
+# Generate 2 random colours and draw 3 random shapes
+palette = generate_pallete(2)
+image.draw_random(palette, 3)
 
 # Display your work of art!
 image.show()
