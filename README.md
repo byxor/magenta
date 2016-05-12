@@ -5,13 +5,15 @@ Procedurally generate neat little pixelated images in python3!
 
 Magenta depends on a few libraries which can easily be installed with pip...
 
-`pip install libjpeg-dev`  
-`pip install zlib1g-dev`  
-`pip install Pillow`  
+```bash
+pip install libjpeg-dev  
+pip install zlib1g-dev  
+pip install Pillow
+```
 
 ## Usage
 Want to generate a cool image? Here's how...  
-```
+```python
 from magenta import *
 
 # Create your image object
