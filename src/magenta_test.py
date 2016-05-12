@@ -48,5 +48,13 @@ class MagentaTest(unittest.TestCase):
 			failed = True
 		self.assertEqual(failed, False)
 
+	def test_MagentaImage_rawsize(self):
+		mImage = MagentaImage(20, 20, 4)
+		self.assertEqual(mImage.get_rawsize(), (20, 20))
 
+	def test_MagentaImage_scaledsize(self):
+		mImage = MagentaImage(20, 10, 5):
+		self.assertEqual(mImage.get_scaledsize(), (100, 50))
+
+		
 unittest.main()
