@@ -57,7 +57,7 @@ class MagentaImage(object):
 		documentation to find out more."""
 		self.__image.save(filepath, format)
 
-	def put_scaledpixel(self, pos, colour):
+	def put_rgb(self, pos, colour):
 		"""Takes raw co-ordinates and a colour as arguments and automatically
 		draws the pixel in that location (after scaling has been applied)."""
 		rawx = pos[0]
@@ -76,7 +76,13 @@ class MagentaImage(object):
 		"""Gets the colour of a pixel at the specified position."""
 		rawx = pos[0]
 		rawy = pos[1]
-		return self.__image.getpixel((rawx, rawy))
+
+		if not 0 <= rawx < self.get_rawsize()[0]:
+			return
+		if not 0 <= rawy < self.get_rawsize()[1]:
+			return
+
+		return self.__image.getpixel((rawx*self.__scale, rawy*self.__scale))
 
 	def get_rawsize(self):
 		"""Gets the dimensions of the image before scaling is applied."""
