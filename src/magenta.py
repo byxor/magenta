@@ -33,7 +33,7 @@ class MagentaImage(object):
 		h = self.__rawsize[1] * self.__scale
 		MODE = "RGB"
 		SCALED_DIMS = (w, h)
-		FILL = (0, 0, 0)
+		FILL = (255, 255, 255)
 		self.__image = Image.new(MODE, SCALED_DIMS, FILL)
 
 	def __str__(self):
@@ -47,25 +47,15 @@ class MagentaImage(object):
 		s += "Scaled dimensions: ({:d}x{:d}) scale={:d}".format(scw, sch, self.__scale)
 		return s
 
-	def __draw_random_shape(self, palette, shapes):
-		"""Draws a random shape on the MagentaImage using the palette."""
+	def show(self):
+		"""Displays the image (mainly for debugging). Check the PIL Image.show()
+		documentation to find out more."""
+		self.__image.show()
 
-		rnd = random.randrange(0, len(palette))
-		colour = palette[rnd]
-
-		rnd = random.randrange(0, len(shapes))
-		shape = shapes[rnd]()
-
-		rndX = random.randrange(-self.get_rawsize()[0], self.get_rawsize()[0])
-		rndY = random.randrange(-self.get_rawsize()[1], self.get_rawsize()[1])
-		pos = (rndX, rndY)
-
-		rndX = random.randrange(0, self.get_rawsize()[0])
-		rndY = random.randrange(0, self.get_rawsize()[1])
-		size = (rndX, rndY)
-
-		shape.draw(self, pos, size, colour)
-
+	def save(self, filepath, format=None):
+		"""Saves the MagentaImage to a file. Check the PIL Image.save()
+		documentation to find out more."""
+		self.__image.save(filepath, format)
 
 	def put_scaledpixel(self, pos, colour):
 		"""Takes raw co-ordinates and a colour as arguments and automatically
@@ -82,6 +72,12 @@ class MagentaImage(object):
 			for y in range(rawy*self.__scale, (rawy+1)*self.__scale):
 				self.__image.putpixel((x, y), colour)
 
+	def get_rgb(self, pos):
+		"""Gets the colour of a pixel at the specified position."""
+		rawx = pos[0]
+		rawy = pos[1]
+		return self.__image.getpixel((rawx, rawy))
+
 	def get_rawsize(self):
 		"""Gets the dimensions of the image before scaling is applied."""
 		return self.__rawsize
@@ -94,30 +90,6 @@ class MagentaImage(object):
 		"""Gets the scale of the image."""
 		return self.__scale
 
-	def show(self):
-		"""Displays the image (mainly for debugging). Check the PIL Image.show()
-		documentation to find out more."""
-		self.__image.show()
-
-	def save(self, filepath, format=None):
-		"""Saves the MagentaImage to a file. Check the PIL Image.save()
-		documentation to find out more."""
-		self.__image.save(filepath, format)
-
-	def fill(self, colour):
-		"""Fills the entire image with a solid colour."""
-		for x in range(0, self.get_rawsize()[0]):
-			for y in range(0, self.get_rawsize()[1]):
-				self.put_scaledpixel((x, y), colour)
-
-	def draw_random(self, palette, shapes, complexity=3):
-		"""Draw random patterns on the image using the provided colour palette.
-		The complexity defines the number of shapes to draw."""
-
-		self.fill(palette[0])
-
-		for i in range(0, complexity):
-			self.__draw_random_shape(palette, shapes)
 
 def generate_colour():
     """Generates a random (r, g, b) tuple."""
