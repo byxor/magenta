@@ -28,8 +28,6 @@ def i_floodfill(mImage, root, fill):
 		q.enqueue(west)
 
 
-
-
 def r_floodfill(mImage, old_col, new_col, pos):
 	"""Recursively floodfill a MagentaImage."""
 
