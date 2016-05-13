@@ -10,22 +10,14 @@ def i_floodfill(mImage, root, fill):
 	while q.size() > 0:
 
 		pos = q.dequeue()
-
-		print("Processing ({}, {})".format(pos[0], pos[1]))
-
 		if mImage.get_rgb(pos) != old_colour:
 			continue
 
 		mImage.put_rgb(pos, fill)
-
-		north = (pos[0]+0, pos[1]-1)
-		east = (pos[0]+1, pos[1]+0)
-		south = (pos[0]+0, pos[1]+1)
-		west = (pos[0]-1, pos[1]+0)
-		q.enqueue(north)
-		q.enqueue(east)
-		q.enqueue(south)
-		q.enqueue(west)
+		q.enqueue((pos[0]+0, pos[1]-1))	# Enqueue the northern cell
+		q.enqueue((pos[0]+1, pos[1]+0))	# Enqueue the eastern cell
+		q.enqueue((pos[0]+0, pos[1]+1))	# Enqueue the southern cell
+		q.enqueue((pos[0]-1, pos[1]+0))	# Enqueue the wester cell
 
 
 def r_floodfill(mImage, old_col, new_col, pos):
