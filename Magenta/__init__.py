@@ -1,1 +1,1 @@
-__all__ = ["algorithm", "magenta", "structure"]
+__all__ = ["algorithm", "image", "queue", "generate"]
