@@ -43,7 +43,7 @@ def drawline(mImage, start, end, colour):
 
 	x = x0
 	y = y0
-	for v in range(0, steps):
+	for v in range(0, steps+1):
 		mImage.put_rgb((int(x), int(y)), colour)
 		x += xIncrement
 		y += yIncrement
