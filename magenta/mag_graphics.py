@@ -1,4 +1,4 @@
-from queue import Queue
+from mag_queue import Queue
 
 
 def floodfill(mImage, root, fill):
@@ -21,18 +21,29 @@ def floodfill(mImage, root, fill):
 		q.enqueue((pos[0]-1, pos[1]+0))	# Enqueue the wester cell
 
 
-def line(mImage, start, end, colour):
-	"""Draw a line from A to B on a MagentaImage."""
+def drawline(mImage, start, end, colour):
+	"""Draw a line from A to B on a MagentaImage using DDA Algorithm."""
 
-	x1 = start[0]
-	y1 = start[1]
+	x0 = start[0]
+	y0 = start[1]
+	x1 = end[0]
+	y1 = end[1]
 
-	x2 = start[0]
-	y2 = start[1]
+	dy = y1-y0
+	dx = x1-x0
 
-	dy = y2 - y1
-	dx = x2 - x1
+	steps = None
+	if dx > dy:
+		steps = abs(dx)
+	else:
+		steps = abs(dy)
 
-	for x in range(x1, x2):
-		y = y1 + dy * (x - x1) / dx
-		mImage.put_rgb((x,y), colour)
+	xIncrement = dx / steps
+	yIncrement = dy / steps
+
+	x = x0
+	y = y0
+	for v in range(0, steps):
+		mImage.put_rgb((int(x), int(y)), colour)
+		x += xIncrement
+		y += yIncrement
